@@ -33,15 +33,24 @@ On Windows, the file is located at `C:\ProgramFiles\ClaudeCode\managed-settings.
 
 ### Auth script `auth.py`
 
-Install MSAL with `python -m pip install msal msal[broker]`, then save this as `C:\ProgramFiles\ClaudeCode\auth.py`. It runs directly on Windows, macOS, and Linux without Azure CLI. Use `python3` instead of `python` where needed.
+Save this as `C:\ProgramFiles\ClaudeCode\auth.py`. It installs `msal[broker]` (which includes MSAL) with the running Python interpreter if MSAL or its broker dependency is missing. First run requires package-feed access and a writable Python environment; use a virtual environment if needed. Installation output goes to stderr, leaving stdout for the token. It runs directly on Windows, macOS, and Linux without Azure CLI. Use `python3` instead of `python` where needed.
 
 
 ```python
 #auth.py
 import argparse
+import importlib.util
 import json
 import os
+import subprocess
 import sys
+
+if any(importlib.util.find_spec(name) is None for name in ("msal", "pymsalruntime")):
+    subprocess.check_call(
+        [sys.executable, "-m", "pip", "install", "msal[broker]"],
+        stdout=sys.stderr,
+    )
+
 import msal
 
 parser = argparse.ArgumentParser()
