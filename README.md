@@ -1,7 +1,12 @@
 # claude-on-foundry-lab
 
+## Setup the Azure AI Gateway lab
 
-## Client configuration
+An existing lab walkthrough the deployment and configuration of the Azure AI Gateway
+`https://github.com/Azure/aigateway/blob/main/labs/25-claude-code/README.md`
+
+
+## Client configuration and deployment using MDM solution
 
 ### managed-settings.json
 
