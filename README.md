@@ -12,17 +12,19 @@ An existing lab walkthrough the deployment and configuration of the Azure AI Gat
 
 `managed-settings.json` is a better option for centrally governing client configuration. This file takes precedence over all other settings files, allowing users to customize their `settings.json` file.
 
+On Windows, the file is located at `C:\ProgramFDiles\ClaudeCode\managed-settings.json`
+
 ```json
 {
-  "apiKeyHelper": "python \"%USERPROFILE%\\.claude\\auth.py\"",
-  "env": {
-    "CLAUDE_GATEWAY_SCOPE": "https://azure-api.net/aigateway/Data.All",
-    "CLAUDE_GATEWAY_TENANT_ID": "<YOUR_TENANT_ID>",
-    "CLAUDE_GATEWAY_CLIENT_ID": "<YOUR_PUBLIC_CLIENT_APP_ID>",
-    "ANTHROPIC_BASE_URL": "https://<YOUR_GATEWAY_PREFIX>.ai.gateway.azure.com/default/models/anthropic",
-    "ANTHROPIC_MODEL": "claude-opus-5-5"
-  },
-  "autoUpdatesChannel": "latest"
+    "apiKeyHelper": "python \"%USERPROFILE%\\.claude\\auth.py\"",
+    "env": {
+        "CLAUDE_GATEWAY_SCOPE": "https://azure-api.net/aigateway/Data.All",
+        "CLAUDE_GATEWAY_TENANT_ID": "<YOUR_TENANT_ID>",
+        "CLAUDE_GATEWAY_CLIENT_ID": "<YOUR_PUBLIC_CLIENT_APP_ID>",
+        "ANTHROPIC_BASE_URL": "https://rbklaigwng-i3jl5j2ssbb2g.swedencentral-01.ai.gateway.azure.com/default/models/anthropic",
+        "ANTHROPIC_MODEL": "claude-opus-5-5"
+    },
+    "autoUpdatesChannel": "latest"
 }
 ```
 
