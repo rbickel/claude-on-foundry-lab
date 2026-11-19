@@ -14,7 +14,10 @@ An existing lab walkthrough the deployment and configuration of the Azure AI Gat
 
 On Windows, the file is located at `C:\ProgramFiles\ClaudeCode\managed-settings.json`
 
-```json
+> [!WARNING]  
+> Claude doesn't support comments in its json setting files. Be sure to remove them
+
+```jsonc
 {
     "apiKeyHelper": "python C:\\ProgramFiles\\ClaudeCode\\auth.py",
     "env": {
@@ -72,8 +75,12 @@ The settings examples use Windows commands. On macOS/Linux, use `python3 \"$HOME
 ### OTLP collector for client telemetry
 
 `managed-settings.json` is a better option for centrally governing client configuration. This file takes precedence over all other settings files, allowing users to customize their `settings.json` file.
+!important: Claude doesn't support comments in its config files, be sure to remove them
 
-```json
+> [!WARNING]  
+> Claude doesn't support comments in its json setting files. Be sure to remove them
+
+```jsonc
 //Gateway configuration removed for readability
 {
   //apiKeyHelper....
