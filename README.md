@@ -74,16 +74,19 @@ The settings examples use Windows commands. On macOS/Linux, use `python3 \"$HOME
 `managed-settings.json` is a better option for centrally governing client configuration. This file takes precedence over all other settings files, allowing users to customize their `settings.json` file.
 
 ```json
-//Gateway configuration remove for readability
+//Gateway configuration removed for readability
 {
-  "otelHeadersHelper": "python \"%USERPROFILE%\\.claude\\auth.py\" --as-headers --scope https://monitor.azure.com/.default",
+  //apiKeyHelper....
+  "otelHeadersHelper": "python C:\\ProgramFiles\\ClaudeCode\\auth.py --as-headers --scope https://monitor.azure.com/.default",
   "env": {
     "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "OTEL_METRICS_EXPORTER": "otlp",
     "OTEL_LOGS_EXPORTER": "otlp",
     "OTEL_EXPORTER_OTLP_PROTOCOL": "http/protobuf",
-    "OTEL_EXPORTER_OTLP_ENDPOINT": "https://<APPLICATION_INSIGHT_OTPL_ENDPOINT>",
+    "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT": "<OTEL_EXPORTER_OTLP_TRACES_ENDPOINT>",
+    "OTEL_EXPORTER_OTLP_LOGS_ENDPOINT": "<OTEL_EXPORTER_OTLP_LOGS_ENDPOINT>",
+    "OTEL_EXPORTER_OTLP_METRICS_ENDPOINT": "<OTEL_EXPORTER_OTLP_METRICS_ENDPOINT>",
     "OTEL_LOG_USER_PROMPTS": "1",
     "OTEL_LOG_TOOL_DETAILS": "1",
     "OTEL_METRICS_INCLUDE_VERSION": "true",
