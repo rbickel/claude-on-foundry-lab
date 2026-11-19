@@ -75,11 +75,9 @@ token = result["access_token"]
 print(json.dumps({"Authorization": f"Bearer {token}"}) if args.as_headers else token)
 ```
 
-For a standalone terminal run, set `CLAUDE_GATEWAY_CLIENT_ID`, `CLAUDE_GATEWAY_TENANT_ID`, and `CLAUDE_GATEWAY_SCOPE` in your shell first, then run `python ~/.claude/auth.py`. The settings `env` block supplies these when Claude Code invokes the helper.
+For a standalone Windows terminal run, set `CLAUDE_GATEWAY_CLIENT_ID`, `CLAUDE_GATEWAY_TENANT_ID`, and `CLAUDE_GATEWAY_SCOPE` in your shell first, then run `python C:\ProgramFiles\ClaudeCode\auth.py`. The settings `env` block supplies these when Claude Code invokes the helper; it does not set them in a separate terminal session.
 
-This minimal lab example signs in on each invocation; it does not persist tokens or provide unattended refresh. Complete the displayed device-code instructions promptly when used as a helper. Stdout contains only the token (or JSON headers with `--as-headers`); instructions and errors go to stderr. Do not log or commit tokens.
-
-The settings examples use Windows commands. On macOS/Linux, use `python3 \"$HOME/.claude/auth.py\"` for `apiKeyHelper`, and append `--as-headers --scope https://monitor.azure.com/.default` for `otelHeadersHelper`.
+On the first run, missing dependencies are installed automatically. The script then starts device-code sign-in: open the verification URL printed to stderr, enter the displayed code, and finish signing in. Each invocation starts a new sign-in because the script does not persist its in-memory token cache or reuse the Azure CLI session. Test it in a terminal first; it is not an unattended token-refresh solution.
 
 ### OTLP collector for client telemetry
 
