@@ -1,4 +1,4 @@
-# claude-on-foundry-lab
+ # claude-on-foundry-lab
 
 ## Setup the Azure AI Gateway lab
 
@@ -10,18 +10,18 @@ An existing lab walkthrough the deployment and configuration of the Azure AI Gat
 
 ### managed-settings.json
 
-`managed-settings.json` is a better option for centrally governing client configuration. This file takes precedence over all other settings files, allowing users to customize their `settings.json` file.
+`managed-settings.json` is a better option for centrally managed client configuration. This file takes precedence over all other settings files, allowing users to customize their own `settings.json` file without compromising the general configuration.
 
-On Windows, the file is located at `C:\ProgramFDiles\ClaudeCode\managed-settings.json`
+On Windows, the file is located at `C:\ProgramFiles\ClaudeCode\managed-settings.json`
 
 ```json
 {
-    "apiKeyHelper": "python \"%USERPROFILE%\\.claude\\auth.py\"",
+    "apiKeyHelper": "python C:\\ProgramFiles\\ClaudeCode\\auth.py",
     "env": {
         "CLAUDE_GATEWAY_SCOPE": "https://azure-api.net/aigateway/Data.All",
         "CLAUDE_GATEWAY_TENANT_ID": "<YOUR_TENANT_ID>",
-        "CLAUDE_GATEWAY_CLIENT_ID": "<YOUR_PUBLIC_CLIENT_APP_ID>",
-        "ANTHROPIC_BASE_URL": "https://rbklaigwng-i3jl5j2ssbb2g.swedencentral-01.ai.gateway.azure.com/default/models/anthropic",
+        "CLAUDE_GATEWAY_CLIENT_ID": "04b07795-8ddb-461a-bbee-02f9e1bf7b46", //entra azure cli app id
+        "ANTHROPIC_BASE_URL": "https://<YOUR_AI_GATEWAY_FQDN>/default/models/anthropic",
         "ANTHROPIC_MODEL": "claude-opus-5-5"
     },
     "autoUpdatesChannel": "latest"
@@ -30,9 +30,8 @@ On Windows, the file is located at `C:\ProgramFDiles\ClaudeCode\managed-settings
 
 ### Auth script `auth.py`
 
-Install MSAL with `python -m pip install msal`, then save this as `~/.claude/auth.py`. It runs directly on Windows, macOS, and Linux without Azure CLI. Use `python3` instead of `python` where needed.
+Install MSAL with `python -m pip install msal msal[broker]`, then save this as `C:\ProgramFiles\ClaudeCode\auth.py`. It runs directly on Windows, macOS, and Linux without Azure CLI. Use `python3` instead of `python` where needed.
 
-Use your existing Entra app's client ID below. Enable **Allow public client flows**, grant delegated permissions/consent for the requested API, and ensure your tenant permits device-code sign-in. The user must also have access to the target resource.
 
 ```python
 #auth.py
